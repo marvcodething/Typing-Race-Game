@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import { toast, Toaster } from 'react-hot-toast';
 
@@ -5,7 +6,7 @@ function App() {
   const copyGameLink = () => {
     const gameLink = generateGameLink(); // Assume this function generates the unique game link
     navigator.clipboard.writeText(gameLink).then(() => {
-      toast.success("Copied game link to clipboard: " + gameLink);
+      toast.success("Copied game link to clipboard");
       setTimeout(() => {
         window.location.href = `/game/${extractGameCode(gameLink)}`;
       }, 1000); // Wait for 1 second before redirecting
