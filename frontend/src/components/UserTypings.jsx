@@ -9,8 +9,11 @@ const UserTypings = ({
                      }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    // Split the user input into characters
-    const typedCharacters = userInput.flatMap(word => word.split(''));
+    // Join the user input with spaces and split into characters
+    const typedCharacters = userInput.join(' ').split('');
+
+    // Join the words with spaces and split into characters
+    const expectedCharacters = words.join(' ').split('');
 
     // Function to handle index updating
     const updateIndex = (typedChar, expectedChar) => {
@@ -22,13 +25,13 @@ const UserTypings = ({
     // Call updateIndex for each character typed
     typedCharacters.forEach((char, index) => {
         if (index === currentIndex) {
-            updateIndex(char, words.flatMap(word => word.split(''))[index]);
+            updateIndex(char, expectedCharacters[index]);
         }
     });
 
     return (
         <div className={className}>
-            {words.flatMap(word => word.split('')).map((char, index) => (
+            {expectedCharacters.map((char, index) => (
                 <Character
                     key={`${char}_${index}`}
                     actual={typedCharacters[index] || ''}
